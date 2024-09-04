@@ -41,7 +41,7 @@ func SendToOpenAI(prompt string) (OpenAIResponse, error) {
 		Messages: Messages,
 	}
 
-	openAIResponse, err := requestOpenAI(openAIRequest)
+	openAIResponse, err := sendOpenAIRequest(openAIRequest)
 	if err != nil {
 		return OpenAIResponse{}, err
 	}
@@ -62,7 +62,7 @@ func formChatCompletionRequest(jsonRequest []byte) (*http.Request, error) {
 	return req, nil
 }
 
-func requestOpenAI(openAIRequest OpenAIRequest) (OpenAIResponse, error) {
+func sendOpenAIRequest(openAIRequest OpenAIRequest) (OpenAIResponse, error) {
 
 	client := &http.Client{}
 
@@ -78,7 +78,7 @@ func requestOpenAI(openAIRequest OpenAIRequest) (OpenAIResponse, error) {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal("OpenAIConnection -> requestOpenAI -> Error communicating to OpenAI", err)
+		log.Fatal("OpenAIConnection -> sendOpenAIRequest -> Error communicating to OpenAI", err)
 		return OpenAIResponse{}, err
 	}
 

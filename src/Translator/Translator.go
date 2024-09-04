@@ -5,6 +5,7 @@ import (
 	"errors"
 	OpenAIConnection "ginni-ai-task/src/OpenAIConnection"
 	"log"
+	"unicode"
 )
 
 type CallTranscription struct {
@@ -63,8 +64,9 @@ func Translate(callTranscription *[]CallTranscription) error {
 
 func checkIfArabic(sentence string) bool {
 	log.Println("checkIfArabic -> ", sentence)
-	for i := 0; i < len(sentence); i++ {
-		if int(sentence[i]) < 0 || int(sentence[i]) > 127 {
+	for _, r := range sentence {
+		log.Println(r, "->", unicode.Is(unicode.Arabic, r))
+		if unicode.Is(unicode.Arabic, r) {
 			return true
 		}
 	}
