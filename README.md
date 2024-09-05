@@ -1,7 +1,12 @@
-To run the project: 
+## Running the Project
 
-Run docker-compose up --build  
+To start the project, use the following command:
 
-To run tests: 
+```bash
+docker-compose up --build
+```
 
-Run docker-compose up -d && docker-compose exec app go test ./...
+To Run the Project's tests, use the following command: 
+```bash
+docker-compose up -d && docker-compose exec app go test ./...
+```
